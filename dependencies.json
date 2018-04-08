@@ -1,0 +1,15 @@
+{
+  "*": {
+    ">=3124": [
+      "requests",
+      "markupsafe",
+      "python-jinja2",
+      "mdpopups",
+      "libconda",
+      "python-markdown",
+      "pygments",
+      "pymdownx",
+      "pyyaml"
+    ]
+  }
+}
