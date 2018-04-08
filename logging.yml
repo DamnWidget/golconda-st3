@@ -1,0 +1,32 @@
+version: 1
+formatters:
+  simple:
+    format: '%(asctime)s (%(name)s) %(levelname)s: %(message)s'
+  structured:
+    format: 'ts=%(asctime)s module=%(name)s level=%(levelname)s msg=%(message)'
+handlers:
+  st_console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: simple
+    stream: ext://sys.stdout
+  syslog:
+    class: logging.handlers.SysLogHandler
+    level: DEBUG
+    formatter: structured
+    address: [localhost, /dev/log]
+    facility: LOG_LOCAL3
+  ntlog:
+    class: logging.handlers.NTEventLogHandler
+    level: DEBUG
+    formatter: structured
+    appname: golconda-st3
+loggers:
+  simpleLogger:
+    level: INFO
+    handlers: [st_console]
+    propagate: no
+  debugLogger:
+    level: DEBUG
+    handlers: !handler_by_os dummy
+    propagate: no
